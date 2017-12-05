@@ -1,0 +1,141 @@
+.container {
+	position: relative;
+}
+
+.header {
+	background: #fff;
+	.box-shadow(0 1px 5px 0 rgba(00, 00, 00, .2));
+
+	.container {
+		height: 80px;
+		positions: relative;
+		margin-bottom: 20px;
+	}
+}
+
+.user {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+.user__avatar {
+	.inlineblock (middle);
+	overflow: hidden;
+	.border-radius(50%);
+	.border();
+}
+
+.user__avatar-pic {
+	width: 60px;
+	height: 60px;
+	display: block;
+}
+
+.user__name {
+	.inlineblock (middle);
+	max-width: 250px;
+	padding-left: 0.25rem;
+}
+
+.contacts {
+	position: absolute;
+	top: 30px;
+	right: 0;
+}
+
+
+.contacts__trigger {
+	color: @blue;
+	.fira(bold);
+	text-decoration: none;
+	font-size: 1.125rem;
+	line-height: 28px;
+	border-bottom: solid transparent 20px;
+	display: block;
+	background: url('/../../image/icons/dotted-border.png') 0 bottom repeat-x;
+
+}
+
+.contacts__trigger:hover {
+	color: @red;
+	background: url('/../../image/icons/dotted-border-red.png') 0 bottom repeat-x;
+}
+
+.contacts__dropdown {
+	margin: 0;
+	display: none;
+	position: absolute;
+	left: -75%;
+	top: 40px;
+	max-height: 150px;
+	min-width: 270px;
+	background-color: @white-white;
+	.fira(light);
+	border: 1px solid #dedede;
+	.border-radius(10px);
+	.box-shadow(0 0 1px 0 rgba(0, 0, 0, .2));
+	z-index: 50;
+}
+
+.contacts__dropdown:before {
+    content: "";
+    display: inline-block;
+    border: solid 10px transparent;
+    border-bottom: solid 10px #fff;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.contacts__dropdown:after {
+    content: "";
+    display: inline-block;
+    border: solid 11px transparent;
+    border-bottom: solid 11px rgba(0, 0, 0, 0.12);
+    position: absolute;
+    top: -23px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contacts__trigger:hover + .contacts__dropdown {
+ 	display: inline-block;
+}
+
+.contacts__dropdown:hover {
+	display: inline-block;
+}
+
+.contacts__dropdown-item {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.contacts__dropdown-link {
+    margin-left: 5px;
+    color: @black;
+    text-decoration: none;
+}
+
+.contacts__dropdown-img {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+#email {
+	display: inline-block;
+}
+
+#phone {
+	display: inline-block;
+}
+
+#skype {
+	display: inline-block;
+}

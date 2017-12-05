@@ -1,0 +1,90 @@
+body {
+	.fira();
+	background: @white;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.wrapper:after {
+	content: "";
+	height: 50px;
+	display: block;
+}
+
+footer {
+	background: @black;
+	height: 60px;
+	margin-top: -60px;
+	position: relative;
+	text-align: center;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 970px;
+	padding: 0 10px;
+
+	&:before {
+		.clearfix();
+	}
+
+	&:after {
+		.clearfix();
+	}
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	list-style: none;
+}
+
+// cotainer setups
+
+@media (max-width: 1200px) { // desktop
+	.container {
+		width: 970px;
+	}
+}
+
+@media (max-width: 992px) { // laptop
+	body {
+		font-size: 15px;
+	}
+
+	.container {
+		width: 750px;
+	}
+}
+
+@media (max-width: 768px) { // tablets
+	body {
+		font-size: 14px;
+	}
+
+	.container {
+		width: 480px;
+	}
+}
+
+@media (max-width: 480px) { // phones
+	body {
+		font-size: 13px;
+	}
+
+	.container {
+		width: auto;
+	}
+}

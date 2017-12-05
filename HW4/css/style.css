@@ -1,0 +1,59 @@
+body {
+	font-family: 'fira_sansregular';
+	margin: 0;
+	padding: 0;
+	background: #f6f6f6;
+}
+
+.wrap {
+	width: 300px;
+	height: 100%;
+	margin: auto;
+	margin-top: 200px;
+	text-align: center;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+
+p {
+	margin: 0px;
+}
+
+.hello-blok-text, .blok-nextly-website {
+	font-weight: bold;
+}
+
+.hello-blok-foto {
+	width: 144px;
+	height: 144px;
+	margin-top: -72px;
+	border: 2px solid #bebebe;
+	border-radius: 50%;
+}
+
+.blok-nextly {
+	padding: 26px;
+	background-color: #33c1e3;
+	border-radius: 0 0 10px 10px;
+}
+
+.blok-nextly-website {
+	display: inline-block;
+	padding: 5px 13px;
+	border: 2px solid;
+	border-radius: 25px;
+	text-decoration: none;
+	line-height: 2;
+	color: #fff;
+	transition: color .2s, background .3s;
+}
+
+a {
+	background: transparent;
+}
+
+a:hover {
+	background: #fff;
+	color: #33c1e3;
+}

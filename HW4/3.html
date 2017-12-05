@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3</title>
+</head>
+<body>
+<img src="" alt="" id="avatar">
+<span id="name"></span>
+</body>
+<script src="https://intita.com/api/dist/intita-api-client.min.js"></script>
+<script>
+    var API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM4NThiOTAwNDg1ZmQ2MDg5ZWU2ZGRhMTgyODBlMjI0ODJmOGRjM2M4ZTkzYjU4NWMyZjk1NjFkN2JhNDQyMTY4ZTc0OTNlYzBiZmI2ZmEwIn0.eyJhdWQiOiIxMCIsImp0aSI6IjM4NThiOTAwNDg1ZmQ2MDg5ZWU2ZGRhMTgyODBlMjI0ODJmOGRjM2M4ZTkzYjU4NWMyZjk1NjFkN2JhNDQyMTY4ZTc0OTNlYzBiZmI2ZmEwIiwiaWF0IjoxNTA5NjQxNzk3LCJuYmYiOjE1MDk2NDE3OTcsImV4cCI6MTgyNTE3NDU5Nywic3ViIjoiNTI2Iiwic2NvcGVzIjpbInVzZXJCYXNlSW5mbyIsInVzZXJEZXRhaWxlZEluZm8iLCJ1c2VyQ291cnNlSW5mbyJdfQ.7HpA6KGg41Wa6vmUJ4sGt4v_dEXZm5SBrkAjO5dFYlSl0g5P8z49dyxTtIFSdBWDiZ65RoiBNGz9hEP5-8kZtsAAnpLdYddtILHbX3JFDckHvjl0VNqAzFFWNPduXzYyXcwxzdoT-EMzWxwUwLESEsNoeXM0fbyWSOOhsDQWJfpbYC7Ve2nfsy30b0tXp43iM5FrYL158K_4ow2lLafDTMXZpWkfxfqwe-R_6GF-L8VcLDItrUH64ypbgrPQJJ0v2RPZLNdn7lbgRIjlasmIwrSF77BNCHSpJmh9ginBo-jK-fkx0Nu6Jd82V_ItftxLqWrnwOgK4dUUIzrs4X0Uj6opHC4_9OJzDc2izTKHZSD6sWRfhctzTXOMlcuI7GrZ6DXGp-gtQwA2VdScT672hdU5fUmGwHIuI68a9x8ZrobOw3X79mLL1hPrELq39VBD9MpZ6CFeit2K6U9Gq1MSb_k_Kf7m3SQCnvHIu6fjF86EXnzGcTrZtRMPNH39wv36wwsWSTKPqo2fWv7ibQqBgCaPfpPr2gkKF5QkfYym8N2Bb5IYtZi6_TTRpn2aQ7QOI7WsNayRcdQx9zQ-xnGdlc4DD-Z7jZiyCgFf-0gpPXeIOA1qUwIKyOlgug9A6p2fYFtEW9hYFOO9XjAthbMD4FQOor_oxjI7EuxNljnAJ6U';
+    var client = new INTITAClient({
+        key: API_KEY,
+    });
+    client.getUserDetails(526, function (error, data) {
+        console.log(error, data);
+        document.getElementById("avatar").src = data.avatar;
+        document.getElementById("name").innerText = data.firstName;
+    });
+    client.getUserCoursesAndModules(526, function (error, data) {
+        console.log(error, data);
+
+        data.courses.forEach(function (element) {
+            var id = element.id;
+            console.log('course info ',element);
+
+            client.getCourseInfo(id, function (error, data) {
+                console.log('course details ', data);
+
+                client.getCourseModules(id, function (error, data) {
+                    console.log('course modules', data);
+                    data.forEach(function (module) {
+                        client.getModuleInfo(module.id, function (error, data) {
+                            console.log('course details', module.id, data);
+                        });
+                        /*client.getModuleTags(module.id, function(error, data) {
+                            console.log(error, data);
+                        });*/
+                        client.getModuleLectures(module.id, function(error, data) {
+                            console.log('lectures details', error, data);
+                        });
+                    });
+                });
+            });
+        });
+    });
+    /*client.getCourseInfo(1, function (error, data) {
+        console.log(error, data)
+    });
+    client.getModuleInfo(1, function (error, data) {
+        console.log(error, data)
+    });
+    client.getCourseModules(1, function (error, data) {
+        console.log(error, data);
+    });
+    client.getCourseTags(1, function(error, data) {
+        console.log(error, data);
+    });
+    client.getModuleTags(1, function(error, data) {
+        console.log(error, data);
+    });
+    client.getModuleLectures(526, function(error, data) {
+        console.log(error, data);
+    });*/
+</script>
+</html>

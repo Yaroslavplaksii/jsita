@@ -1,0 +1,75 @@
+.content {
+    .container {
+        .clearfix();
+    }
+}
+
+.content {
+    .clearfix();
+}
+
+.container:before, .container:after {
+    content: "";
+    displa: block;
+}
+
+.container:after {
+    creal: both;
+}
+
+.content {
+	box-sizing: border-box;
+}
+
+.profil {
+	width: 760px;
+	float: right;
+    .clearfix();
+}
+
+.about__left {
+	margin-left: 60px;
+    display: inline-block;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    .border();
+    background-image: url(../image/ava_blok_left.png);
+    background-position: -23px;
+    background-size: 270px;
+}
+
+.about__right {
+    display: inline-block;
+    vertical-align: top;
+    width: 370px;
+    float: right;
+}
+
+.repeating-title {
+	padding: 0;
+	margin: 0;
+}
+
+.about__text {
+	width: 380px;
+	height: 290px;
+	overflow-y: scroll;
+}
+
+.about__download {
+	width: 170px;
+    height: 38px;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 3.125rem;
+    padding-bottom: 1.875rem;
+    margin-bottom: 30px;
+}
+
+.about__download-link {
+	.btn(@red);
+	.border-radius(25px);
+}
