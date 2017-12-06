@@ -3,12 +3,6 @@ var client = new INTITAClient({
     key: API_KEY,
 });
 
-client.getModuleLectures(id_lecture,function (error, data) {
-    
-        console.log(data.id_lecture);
-   
-    
-});
 
 
 var lect = new Array();
@@ -30,10 +24,10 @@ client.getUserDetails( function (error, data) {
     document.getElementById("phone").innerHTML = data.phone;
     document.getElementById("skype").innerHTML = data.skype;
 
-// document.getElementById("country").innerHTML = data.country;
-  //  document.getElementById("city").innerHTML = data.city;
-  //  document.getElementById("address").innerHTML = data.address;
-  //  document.getElementById("education").innerHTML = data.education;
+ document.getElementById("country").innerHTML = data.country;
+ document.getElementById("city").innerHTML = data.city;
+ document.getElementById("address").innerHTML = data.address;
+ document.getElementById("education").innerHTML = data.education;
 });
 
 
@@ -46,29 +40,43 @@ client.getUserCoursesAndModules( function (error, data) {
         client.getCourseInfo(id, function (error, data) {
             document.getElementById("title").innerHTML = element.title;
 
-            client.getCourseModules(id, function (error, data) {
-              /// console.log('course modules', data);
+            client.getCourseModules(id, function (error, data) {              
                 var moduleContainer = document.getElementById("modules");
                 var container = document.createElement('div');
-                //var containerList = document.getElementById("module__list");
-
+                
                 data.forEach(function (module, index) {
-                    client.getModuleInfo(module.id, function (error, moduleInfo) {
-                        
+                    client.getModuleInfo(module.id, function (error, moduleInfo) {                        
                         var moduleInfoEl = document.createElement('div');
-                            moduleInfoEl.setAttribute('class','module');
-                            moduleInfoEl.setAttribute('id',moduleInfo.module_ID);                    
-                            moduleInfoEl.innerHTML = '<span class="nameModul" data-id="'+moduleInfo.module_ID+'">'+moduleInfo.title_ua + '</span>';
-                            container.appendChild(moduleInfoEl);
-
+                            moduleInfoEl.setAttribute('class','module'); 
+                            /*для блока модуля і списку лекції додав клас для подальшої стилізації, класи не використовую*/       
+                            /*додав клас для блока і обгорнув назви модуля в спан додавши атрибут data-id і обробник onclick="show(this)", ф-я описана нижче*/                                   
+                            moduleInfoEl.innerHTML = '<span class="nameModul" onclick="show(this)" data-id="'+moduleInfo.module_ID+'">'+moduleInfo.title_ua + '</span>';
+                            /*всі лекції буду виводити через список додавши клас і атрибут id який для кожного блока лекці співпадає з атрибутом data-id назви модуля*/
+                           var html = '<ul class="lectures" id="'+moduleInfo.module_ID+'" style="display:none">';/*початок списку і зразу ховаю його*/
+                                client.getModuleLectures(module.id, function(error, data) {   /*це їхня ф-я яка повертає спиоск лекцій модуля, module.id це по ньому вивбирає лекці для модуля */                         
+                                   for(var i=0; i<data.length; i++){/*тут приходить json, який через цикл виводжу формуюси елементи списку*/
+                                        html += '<li>'+data[i]['title']+'</li>';
+                                   }
+                                html += '</ul>';
+                                moduleInfoEl.innerHTML +=html; /*додаю все до блока модуля*/                       
+                        });
+                        container.appendChild(moduleInfoEl);
                         if (index === data.length - 1) {
                             moduleContainer.appendChild(container);
-                        }
-                        
+                        }                        
                     });
                 });
             });
         });
     });
 });
+/*ф-я яка розкриває і згортає блок з лекціями*/
+function show(el){
+    var showLection = document.getElementById(el.getAttribute('data-id'));/*вивбираємо елемент по Id і який дорівнює data-id*/
+    if(showLection.style.display=='none'){/*дивимось на значення display і міняємо його значення*/
+        showLection.style.display='block';
+    }else{
+         showLection.style.display='none';
+    }
+}
 
